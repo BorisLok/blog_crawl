@@ -1,4 +1,5 @@
 import os
+from typing import Dict
 
 import mysql.connector
 import requests
@@ -103,3 +104,21 @@ def get_from_database(time):
         if conn is not None and conn.is_connected():
             conn.close()
         return magazines
+
+
+# upload magazine to the server
+def upload(magazines: Dict[MagazineBuilder], domain: str):
+    headers = {
+        'Content-Type': 'application/json',
+        'Accept': '*/*'
+    }
+
+    for key in magazines:
+        magazine = magazines[key].magazine.to_json()
+        response = requests.post(domain, json=[magazine], headers=headers)
+
+        if not response.ok:
+            print("==== upsert post to %(domain)s: %(id)s failed ====" % {"id": key, "domain": domain})
+            return False
+
+    return True
