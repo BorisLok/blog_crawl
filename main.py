@@ -7,6 +7,11 @@ from dotenv import load_dotenv, find_dotenv
 from core import crawl_from_website, get_from_database, upload
 
 
+# TODO magazine data maybe duplicate, fetch data once is enough.
+# The main function
+# read the last timestamp that has been crawled and domain url.
+# get magazine data from database and crawl from website.
+# if upload success, then write now to the log file.
 def main(env: str, _now: float):
     delay = 2
     if env == "staging":
@@ -19,7 +24,7 @@ def main(env: str, _now: float):
     with open(log, 'r') as f:
         try:
             time = float(f.readline())
-        finally:
+        except ValueError:
             time = datetime(2020, 1, 1, 0, 0, 0).replace(tzinfo=timezone.utc).timestamp()
 
     magazines = get_from_database(time)

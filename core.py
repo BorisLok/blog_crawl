@@ -9,6 +9,7 @@ from bs4 import BeautifulSoup
 from magazine import Magazine, MagazineBuilder
 
 
+# Get the magazine information from website.
 def crawl_from_website(magazine: Magazine):
     if magazine.url is None:
         raise Exception('magazine id: %(id)s' % {"id": magazine.id})
@@ -34,6 +35,7 @@ def crawl_from_website(magazine: Magazine):
         raise Exception('magazine id: %(id)s' % {"id": magazine.id})
 
 
+# Get the magazine information from database.
 def get_from_database(time):
     magazines = {}
     language = {}
