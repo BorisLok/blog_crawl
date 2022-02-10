@@ -1,11 +1,11 @@
+import os
+
+import mysql.connector
 import requests
+import yaml
+from bs4 import BeautifulSoup
 
 from magazine import Magazine, MagazineBuilder
-from bs4 import BeautifulSoup
-import yaml
-import os
-import mysql.connector
-from mysql.connector import Error
 
 
 def crawl_from_website(magazine: Magazine):
@@ -72,7 +72,6 @@ def get_from_database(time):
                     """ % {
                 "time": time
             }
-            print(sql)
 
             cursor.execute(sql)
 
@@ -83,8 +82,7 @@ def get_from_database(time):
                     if category == "category":
                         magazines[identifier].set_category(tag)
                     else:
-                        magazine = magazines[identifier]
-                        magazines[identifier].set_tags(magazine.magazine.tags.add(tag))
+                        magazines[identifier].magazine.tags.add(tag)
                 else:
                     magazine = MagazineBuilder()
                     magazine.set_id(identifier)
@@ -97,9 +95,10 @@ def get_from_database(time):
                     magazines[identifier] = magazine
 
             for key in magazines:
-                magazines[key].set_language("zh" if language[key] is None or language[key] == "zh-tw" else language[key])
-    except Error as e:
-        print("==== load database failed ====")
+                magazines[key].set_language(
+                    "zh" if language[key] is None or language[key] == "zh-tw" else language[key])
+    except Exception as e:
+        print("exception: ", e)
     finally:
         if conn is not None and conn.is_connected():
             conn.close()
