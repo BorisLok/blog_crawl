@@ -107,7 +107,7 @@ def get_from_database(time):
 
 
 # upload magazine to the server
-def upload(magazines: Dict[MagazineBuilder], domain: str):
+def upload(magazines: Dict[str, MagazineBuilder], domain: str):
     headers = {
         'Content-Type': 'application/json',
         'Accept': '*/*'

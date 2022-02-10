@@ -8,8 +8,6 @@ from core import crawl_from_website, get_from_database, upload
 
 
 def main(env: str, _now: float):
-    log = None
-    domain = None
     delay = 2
     if env == "staging":
         log = os.getenv("LOG_STAGING_FILE_PATH")
@@ -22,7 +20,7 @@ def main(env: str, _now: float):
         try:
             time = float(f.readline())
         finally:
-            time = _now
+            time = datetime(2020, 1, 1, 0, 0, 0).replace(tzinfo=timezone.utc).timestamp()
 
     magazines = get_from_database(time)
     for key in magazines:
@@ -31,7 +29,7 @@ def main(env: str, _now: float):
         crawl_from_website(magazine.magazine)
         sleep(delay)
 
-    is_success = upload(magazines=magazines, domain=domain)
+    is_success = upload(magazines=magazines, domain=domain + "/blog")
 
     if is_success:
         with open(log, 'w') as f:
