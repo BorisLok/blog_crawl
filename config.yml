@@ -1,4 +1,6 @@
 description:
-  tag: h3
+   tag: h3
+   type: text
 snapshot:
-  tag: span.imageframe-1 img
+   tag: span.imageframe-1 img
+   type: img
