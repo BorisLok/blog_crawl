@@ -4,19 +4,17 @@
     <li>Pipenv</li>
 </ul>
 
----
-<h3>下載</h3>
-```
-git clone https://github.com/BorisLok/blog_crawl.git
-```
----
+
 <h3>Install</h3>
-1. Install pipenv ```pip3 install pipenv```
-2. Install project dependencies ```pipenv install```
----
+<ul>
+<li>Install pipenv ```pip3 install pipenv``` </li>
+<li>Install project dependencies ```pipenv install``` </li>
+</ul>
+
 <h3>設定</h3>
 新增 .env file 在 Project 底下
-```dotenv
+
+```
 # wordpress database 的 config
 MYSQL_HOST=
 MYSQL_DATABASE=
@@ -32,6 +30,7 @@ LOG_STAGING_FILE_PATH=
 ```
 
 ### 如果不想想上傳到 staging，請修改 main.py
+
 ```python
 if __name__ == '__main__':
     ...
@@ -43,11 +42,13 @@ if __name__ == '__main__':
 ---
 
 <h3>執行</h3>
+
 ```
 python3 -i main.py
 ```
 
 <h3>設定排程</h3>
+
 ```
 1. crontab -e                     #修改排程
 2. 把這行加進去前, 請注意 project 的執行路徑是否正確 
