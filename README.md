@@ -11,7 +11,6 @@
   ```
   pip3 install pipenv
   ```
-
 * Install project dependencies
 
   ```
