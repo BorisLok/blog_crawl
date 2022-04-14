@@ -6,11 +6,11 @@
 
 
 <h3>Install</h3>
-1. Install Pipenv
+* Install Pipenv
         ```
          pip3 install pipenv
         ```
-2. Install project dependencies
+* Install project dependencies
         ```
         pipenv install
         ```
