@@ -6,10 +6,14 @@
 
 
 <h3>Install</h3>
-<ul>
-<li>Install pipenv ```pip3 install pipenv``` </li>
-<li>Install project dependencies ```pipenv install``` </li>
-</ul>
+1. Install Pipenv
+```
+pip3 install pipenv
+```
+2. Install project dependencies
+```
+pipenv install
+```
 
 <h3>設定</h3>
 新增 .env file 在 Project 底下
